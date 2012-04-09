@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+">
+    <information>
+        <title>RABfx</title>
+        <vendor>Ross Allen Bell</vendor>
+        <description>RABfx</description>
+        <offline-allowed/>
+        <shortcut>
+            <desktop/>
+        </shortcut>
+    </information>
+    <resources>
+        <j2se version="1.5+"/>
+        <extension name="JavaFX Runtime" href="http://dl.javafx.com/javafx-rt.jnlp"/>
+        <jar href="RABfx.jar" main="true"/>
+    </resources>
+    <application-desc main-class="com.rossallenbell.javafx.tictactoe.TicTacToeMain"/>
+</jnlp>
