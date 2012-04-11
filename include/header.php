@@ -6,9 +6,9 @@
 <title>Ross Allen Bell - www.rossallenbell.com</title>
 </head>
 <body>
-    <h4 style="font-family: sans-serif">Welcome to the Homepage of</h4>
-    <h1 style="font-family: sans-serif">Ross Allen Bell</h1>
-    <div class="nav">
+    <h4 style="font-family: sans-serif" align="center">Welcome to the Homepage of</h4>
+    <h1 style="font-family: sans-serif" align="center">Ross Allen Bell</h1>
+    <div class="nav" align="center">
         <?php if($_SERVER["REQUEST_URI"] == "/"){ ?>
             About
         <?php } else { ?>
