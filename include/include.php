@@ -1,4 +1,4 @@
 <?php
-	$rootDirectory = "/home/rossalle/public_html";
-	$htmlRootDirectory = "http://www.rossallenbell.com";
+	$rootDirectory = getcwd();
+	$htmlRootDirectory = $_SERVER['HTTP_HOST'];
 ?>
