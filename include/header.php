@@ -12,12 +12,12 @@
         <?php if($_SERVER["REQUEST_URI"] == "/"){ ?>
             About
         <?php } else { ?>
-    	    <a href="<?php echo $htmlRootDirectory ?>">About</a>
+    	    <a href="http://<?php echo $htmlRootDirectory ?>">About</a>
         <?php } ?> | 
     	<?php if($_SERVER["REQUEST_URI"] == "/funstuff/"){ ?>
             Fun Stuff
         <?php } else { ?>
-            <a href="<?php echo $htmlRootDirectory ?>/funstuff">Fun Stuff</a>
+            <a href="http://<?php echo $htmlRootDirectory ?>/funstuff">Fun Stuff</a>
         <?php } ?> | 
-    	<a target="_blank" href="<?php echo $htmlRootDirectory ?>/Resume_Bell_Ross.pdf">Resume (2010-10-23)</a>
+    	<a target="_blank" href="http://<?php echo $htmlRootDirectory ?>/Resume_Bell_Ross.pdf">Resume (2010-10-23)</a>
 	</div>
