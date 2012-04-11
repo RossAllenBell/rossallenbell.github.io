@@ -1,7 +1,5 @@
-<?php
-	include("include.php");
-	include($rootDirectory . "/include/header.php");
-?>
+<?php include("./include/header.php"); ?>
+
 <p>
 My name is Ross Allen Bell. I'm married to <a href="http://www.shatra.net/" target="_blank">Shatra Bell</a>, have a too-cool-for-me sister Alison, and parents Rick and Kathy. Shatra and I met while on the <a href="http://www.nasa.gov/audience/forstudents/postsecondary/programs/Undergraduate_Student_Research_Project.html" target="_blank">USRP<a/> at <a href="http://www.nasa.gov" target="_blank">NASA</a> <a href="http://www.nasa.gov/centers/langley/home/index.html" target="_blank">Langley</a>.
 </p>
@@ -17,4 +15,5 @@ My interests include <a href="http://www.java.com" target="_blank">Java</a>, art
 <p>
 If you need to contact me, drop me a line at RossAllenBell at gmail.
 </p>
-<?php include($rootDirectory . "/include/footer.php"); ?>
+
+<?php include("./include/footer.php"); ?>
