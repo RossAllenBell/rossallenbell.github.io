@@ -3,6 +3,33 @@ body {
     width: 800px;
 }
 
+img {
+    border-style:none;
+}
+
 .middleficated {
     text-align:center;
+    font-weight:bold;
+}
+
+.project-title {
+    font-weight:bold;
+}
+
+.project-image-inline {
+    float: right;
+    padding-bottom:20px;
+}
+
+.project-image-row {
+    text-align: center;
+    padding-left: 0px;
+}
+
+.project-image-row li {
+    display: inline-block;
+}
+
+.project-section {
+    clear: both;
 }
