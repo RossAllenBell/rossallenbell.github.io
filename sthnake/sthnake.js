@@ -142,13 +142,13 @@ function moveNextFrame() {
     game.lastMoveTime = 0;
 }
 
+var loopStartTime = new Date().getTime();
 function gameLoop() {
     if(!game.paused) {
-	    var loopStartTime = new Date().getTime();
+	    loopStartTime = new Date().getTime();
 	    
 	    if(loopStartTime - game.lastMoveTime >= game.moveSpeed){
 	        var newHead = [headCoord()[0] + game.snakeDir.transform[0], headCoord()[1] + game.snakeDir.transform[1]];
-	        var tail = game.snakeCoords[game.snakeCoords.length-1];
 	        if(!checkForDeath(newHead)) {
 		        game.snakeCoords.unshift(newHead);
 		        fillSegment(headCoord());
@@ -162,8 +162,8 @@ function gameLoop() {
 		        game.lastMoveTime = loopStartTime;
 	        }
 	        game.score += 1;
-	        $('#scoreSpan').html("Score: " + game.score)
-	        $('#lengthSpan').html("Length: " + game.snakeCoords.length)
+	        $('#scoreSpan').html("Score: " + game.score);
+	        $('#lengthSpan').html("Length: " + game.snakeCoords.length);
 	    }
     }
     if(game.active) {
@@ -185,7 +185,7 @@ function checkForDeath(coord) {
 }
 
 function snakeOnCoord(coord) {
-    for(i=0; i<game.snakeCoords.length; i++) {
+    for(var i=0; i<game.snakeCoords.length; i++) {
         if(coordsEqual(coord, game.snakeCoords[i])) {
             return true;
         } 

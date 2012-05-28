@@ -15,11 +15,11 @@ function Parkaos() {
     var RUN_ACCEL = 1000;
     
     var game = {};
-    var tangible;
+    var tangible = {};
     
     function newGame() {
         if(typeof game.latestTimeoutId != 'undefined'){
-            clearTimeout(game.latestTimeoutId)
+            clearTimeout(game.latestTimeoutId);
         }
         if($('#containerDiv').length != 0){
             $('#containerDiv').remove();
@@ -34,7 +34,7 @@ function Parkaos() {
         tangible.terminalVelocity = 1500;
     
         game = {};
-        game.player = {coords: [50,50], segments: PLAYER_SHAPE};
+        game.player = {coords: [50,50], segments: PLAYER_SHAPE.segments};
         tangible.addObject(game.player);
         tangible.setPointOfView(game.player);
         game.active = true;
@@ -110,6 +110,6 @@ function Parkaos() {
     newGame();
 }
 
-var PLAYER_SHAPE = [[[0,0],[20,0]],[[20,0],[20,30]],[[20,30],[0,30]],[[0,30],[0,0]]];
+var PLAYER_SHAPE = {segments: [[[0,0],[20,0]],[[20,0],[20,30]],[[20,30],[0,30]],[[0,30],[0,0]]]};
 //var PLAYER_SHAPE = [[[0,0],[20,30]],[[20,0],[0,30]]];
 var LEVEL_1 = {segments: [[[100,980],[100,930]],[[100,930],[200,930]],[[200,930],[200,980]],[[0,980],[500,900]],[[500,900],[999,980]],[[200,930],[200,875]],[[200,875],[150,875]],[[200,900],[250,900]],[[250,900],[260,999]]]};

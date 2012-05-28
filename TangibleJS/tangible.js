@@ -59,7 +59,7 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     	this.draw();
     	
     	this.lastUpdate = new Date().getTime();
-    }
+    };
     
     this.updateAcceleration = function (xyIndex, secondsSinceLastUpdate){
     	for(var i in this.sceneObjects){
@@ -78,7 +78,7 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     			}
     		}
     	}
-    }
+    };
     
     this.updateMovement = function (xyIndex, secondsSinceLastUpdate){
     	for(var i in this.sceneObjects){
@@ -91,45 +91,45 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
 	    			var collisionSegments = this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment);
 	    			this.collisionSegmentsDebug = this.collisionSegmentsDebug.concat(collisionSegments);
 	    			if(collisionSegments.length){
-	    				var maxCollisionSlope = 0;
-	    				for(var j in collisionSegments){
-	    					var slope = this.slope(collisionSegments[j]);
-	    					if(xyIndex == 1){
-	    						if(slope == 0){
-	    							slope = Number.MAX_VALUE;
-	    						} else {
-	    							slope = 1/slope;
-	    						}
-	    					}
-	    					maxCollisionSlope = Math.max(maxCollisionSlope, Math.abs(slope));
-	    				}
-	    				if(maxCollisionSlope <= this.steadyGroundSlope && xyIndex == 0 && maxCollisionSlope != 0){
-	    					var newY = -Math.sqrt(1/(1+Math.pow(1/maxCollisionSlope,2)));
-	    					var newX = newY/maxCollisionSlope;
-	    					
-	    					if(direction == 1){
-	    						newX = -newX;
-	    					}
-	    					
-	    					movementOffset = [newX,newY];
-	    					if(!this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment).length){
-	    						this.sceneObjects[i].coords[xyIndex]+=Math.min(travelDistanceThisUpdate, movementOffset[xyIndex]);
-	    						this.sceneObjects[i].coords[xyIndex^1]+=Math.min(travelDistanceThisUpdate, movementOffset[xyIndex^1]);
-	    					} else {
-	    						this.sceneObjects[i].velocity[xyIndex] = 0;
-			    				break;
-	    					}
-	    				} else {
-		    				this.sceneObjects[i].velocity[xyIndex] = 0;
-		    				break;
-	    				}
+//	    				var maxCollisionSlope = 0;
+//	    				for(var j in collisionSegments){
+//	    					var slope = this.slope(collisionSegments[j]);
+//	    					if(xyIndex == 1){
+//	    						if(slope == 0){
+//	    							slope = Number.MAX_VALUE;
+//	    						} else {
+//	    							slope = 1/slope;
+//	    						}
+//	    					}
+//	    					maxCollisionSlope = Math.max(maxCollisionSlope, Math.abs(slope));
+//	    				}
+//	    				if(maxCollisionSlope <= this.steadyGroundSlope && xyIndex == 0 && maxCollisionSlope != 0){
+//	    					var newY = -Math.sqrt(1/(1+Math.pow(1/maxCollisionSlope,2)));
+//	    					var newX = newY/maxCollisionSlope;
+//	    					
+//	    					if(direction == 1){
+//	    						newX = -newX;
+//	    					}
+//	    					
+//	    					movementOffset = [newX,newY];
+//	    					if(!this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment).length){
+//	    						this.sceneObjects[i].coords[xyIndex]+=Math.min(travelDistanceThisUpdate, movementOffset[xyIndex]);
+//	    						this.sceneObjects[i].coords[xyIndex^1]+=Math.min(travelDistanceThisUpdate, movementOffset[xyIndex^1]);
+//	    					} else {
+//	    						this.sceneObjects[i].velocity[xyIndex] = 0;
+//			    				break;
+//	    					}
+//	    				} else {
+//		    				this.sceneObjects[i].velocity[xyIndex] = 0;
+//		    				break;
+//	    				}
 	    			} else {
 	    				this.sceneObjects[i].coords[xyIndex]+=direction * Math.min(travelDistanceThisUpdate, 1);
 	    			}
 	    		}
 			}
     	}
-    }
+    };
     
     this.draw = function(){
         context.clearRect(0,0,this.scene.width,this.scene.height);
@@ -145,19 +145,19 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
         if(this.drawDebugInfo){        	
             context.strokeStyle = '#CFCFCF';
             context.lineWidth = 1;
-            for(i=(GRID_WIDTH-this.scene.x)%GRID_WIDTH; i<this.scene.width; i+=GRID_WIDTH){
+            for(var i=(GRID_WIDTH-this.scene.x)%GRID_WIDTH; i<this.scene.width; i+=GRID_WIDTH){
                 context.beginPath();
                 context.moveTo(i,0);
                 context.lineTo(i,this.scene.height);
                 context.stroke();
-                context.closePath()
+                context.closePath();
             }
-            for(i=(GRID_WIDTH-this.scene.y)%GRID_WIDTH; i<this.scene.height; i+=GRID_WIDTH){
+            for(var i=(GRID_WIDTH-this.scene.y)%GRID_WIDTH; i<this.scene.height; i+=GRID_WIDTH){
                 context.beginPath();
                 context.moveTo(0,i);
                 context.lineTo(this.scene.width,i);
                 context.stroke();
-                context.closePath()
+                context.closePath();
             }
         }
         
@@ -190,20 +190,20 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
         	
         	context.fillStyle = '#FF0000';
         	context.font = "12pt Calibri";
-        	this.lastSecondFramesDrawn.push(this.lastUpdate)
+        	this.lastSecondFramesDrawn.push(this.lastUpdate);
         	while(this.lastSecondFramesDrawn[0] && this.lastSecondFramesDrawn[0] <= new Date().getTime() - 1000){
         		this.lastSecondFramesDrawn.shift();
         	}
         	var coordsText = 'FPS: [' + this.lastSecondFramesDrawn.length + '] POV Object: coords[' + Math.round(this.povObject.coords[0]) + ',' + Math.round(this.povObject.coords[1]) + '] xV[' + Math.round(this.povObject.velocity[0]) + '] yV[' + Math.round(this.povObject.velocity[1]) + '] Scene: [' + Math.round(this.scene.x) + ',' + Math.round(this.scene.y) + ']';
         	context.fillText(coordsText, this.scene.width - context.measureText(coordsText).width - 5, this.scene.height - 5);
         }
-    }
+    };
     
     this.drawSegments = function(segments){
     	for(var i in segments){
     		this.drawSegment(segments[i]);
     	}
-    }
+    };
     
     this.drawSegment = function(segment){
     	if(this.segmentIsInView(segment)){
@@ -212,17 +212,17 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
             context.moveTo(segment[0][0] - this.scene.x,segment[0][1] - this.scene.y);
             context.lineTo(segment[1][0] - this.scene.x,segment[1][1] - this.scene.y);
             context.stroke();
-            context.closePath()
+            context.closePath();
 		}
-    }
+    };
     
     this.segmentIsInView = function(segment){
     	return true;
-    }
+    };
     
     this.getDrawableSegment = function(segment){
     	return segment;
-    }
+    };
     
     this.getSceneWindowSegments = function(){
     	return [
@@ -230,7 +230,7 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     	        [[this.scene.x + this.scene.width,this.scene.y],[this.scene.x + this.scene.width,this.scene.y + this.scene.height]],
     	        [[this.scene.x + this.scene.width,this.scene.y + this.scene.height],[this.scene.x,this.scene.y + this.scene.height]],
     	        [[this.scene.x,this.scene.y + this.scene.height],[this.scene.x,this.scene.y]]];
-    }
+    };
     
     this.setPointOfView = function(coordedObject){
     	if(coordedObject.coords){
@@ -238,7 +238,7 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     	} else {
     		console.error("Attempted to set POV to: " + JSON.stringify(coordedObject));
     	}
-    }
+    };
     
     this.addObject = function(segmentedObject){
     	if(segmentedObject.segments){
@@ -249,35 +249,35 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     	} else {
     		console.error("Attempted to add object without segments: " + JSON.stringify(segmentedObject));
     	}
-    }
+    };
     
     this.moveSceneNorth = function(pixels) {
         if(this.scene.y > 0) {
             this.scene.y-=typeof pixels == 'undefined'? 1 : pixels;
         }
-    }
+    };
 
     this.moveSceneEast = function(pixels) {
         if(this.scene.x < this.worldWidth - this.scene.width - 1) {
             this.scene.x+=typeof pixels == 'undefined'? 1 : pixels;
         }
-    }
+    };
     
     this.moveSceneSouth = function(pixels) {
         if(this.scene.y < this.worldHeight - this.scene.height - 1) {
             this.scene.y+=typeof pixels == 'undefined'? 1 : pixels;
         }
-    }
+    };
     
     this.moveSceneWest = function(pixels) {
         if(this.scene.x > 0) {
             this.scene.x-=typeof pixels == 'undefined'? 1 : pixels;
         }
-    }
+    };
     
     this.addEnvironment = function(someEnvironment) {
     	this.environment = this.environment.concat(someEnvironment.segments);
-    }
+    };
     
     this.getBoundingBox = function(segments){
     	var north = Number.MAX_VALUE;
@@ -285,22 +285,22 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     	var east = -Number.MAX_VALUE;
     	var west = Number.MAX_VALUE;
     	for(var i in segments){
-    		north = Math.min(north,segments[i][0][1])
-    		north = Math.min(north,segments[i][1][1])
-    		south = Math.max(south,segments[i][0][1])
-    		south = Math.max(south,segments[i][1][1])
-    		east = Math.max(east,segments[i][0][0])
-    		east = Math.max(east,segments[i][1][0])
-    		west = Math.min(west,segments[i][0][0])
-    		west = Math.min(west,segments[i][1][0])
+    		north = Math.min(north,segments[i][0][1]);
+    		north = Math.min(north,segments[i][1][1]);
+    		south = Math.max(south,segments[i][0][1]);
+    		south = Math.max(south,segments[i][1][1]);
+    		east = Math.max(east,segments[i][0][0]);
+    		east = Math.max(east,segments[i][1][0]);
+    		west = Math.min(west,segments[i][0][0]);
+    		west = Math.min(west,segments[i][1][0]);
     	}
     	return [[[west,north],[east,north]],[[east,north],[east,south]],[[east,south],[west,south]],[[west,south],[west,north]]];
-    }
+    };
     
     this.getCenterPoint = function(sceneObject){
     	var boundingBox = this.getBoundingBox(sceneObject.segments);
     	return [(boundingBox[0][0][0]+boundingBox[0][1][0])/2+sceneObject.coords[0],(boundingBox[0][0][1]+boundingBox[1][1][1])/2+sceneObject.coords[1]];
-    }
+    };
     
     this.offsetSegments = function(segments, offset){
     	var newSegments = [];
@@ -308,38 +308,38 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     		newSegments.push(this.offsetSegment(segments[i], offset));
     	}
     	return newSegments;
-    }
+    };
     
     this.offsetSegment = function(segment, offset){
     	return [[segment[0][0]+offset[0],segment[0][1]+offset[1]],[segment[1][0]+offset[0],segment[1][1]+offset[1]]];
-    }
+    };
     
     this.getVectorOfSegment = function(segment){
     	return [segment[1][0]-segment[0][0],segment[1][1]-segment[0][1]];
-    }
+    };
     
     this.addVectors = function(vectorA, vectorB){
     	return [vectorA[0]+vectorB[0],vectorA[1]+vectorB[1]];
-    }
+    };
     
     this.subtractVectors = function(vectorA, vectorB){
     	return [vectorA[0]-vectorB[0],vectorA[1]-vectorB[1]];
-    }
+    };
     
     this.scaleVector = function(vector, scalar){
     	return [vector[0] * scalar, vector[1] * scalar];
-    }
+    };
     
     this.crossProduct = function(vectorA, vectorB){
-    	return (vectorA[0]*vectorB[1])-(vectorA[1]*vectorB[0])
-    }
+    	return (vectorA[0]*vectorB[1])-(vectorA[1]*vectorB[0]);
+    };
     
     this.slope = function(segment){
     	if(segment[1][0] - segment[0][0] == 0){
     		return Number.MAX_VALUE;
     	}
-    	return (-segment[1][1] - -segment[0][1])/(segment[1][0] - segment[0][0]);
-    }
+    	return (segment[1][1] - segment[0][1])/(segment[1][0] - segment[0][0]);
+    };
     
     this.intersection = function(segmentA, segmentB){
     	if(this.parallel(segmentA, segmentB)){
@@ -352,15 +352,15 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     	} else {
     		return undefined;
     	}
-    }
+    };
     
     this.parallel = function(segmentA, segmentB){
     	return this.crossProduct(this.getVectorOfSegment(segmentA), this.getVectorOfSegment(segmentB)) == 0;
-    }
+    };
     
     this.collinear = function(segmentA, segmentB){
     	return this.parallel(segmentA, segmentB) && this.crossProduct(this.subtractVectors(segmentB[0], segmentA[0]), this.getVectorOfSegment(segmentA)) == 0;
-    }
+    };
     
     this.collision = function(segmentsA, segmentsB){
     	var segments = [];
@@ -377,10 +377,10 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     		}
     	}
     	return segments;
-    }
+    };
     
     this.onTopOfSurface = function(sceneObject){
 		return this.collision(this.offsetSegments(this.offsetSegments(sceneObject.segments, sceneObject.coords), [0,1]), this.environment).length;
-    }
+    };
     
 }
