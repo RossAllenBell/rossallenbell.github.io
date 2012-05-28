@@ -43,8 +43,7 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     this.update = function(){
     	this.collisionSegmentsDebug = [];
     	var secondsSinceLastUpdate = (new Date().getTime() - this.lastUpdate)/1000;
-    	this.updateAcceleration(0, secondsSinceLastUpdate);
-    	this.updateAcceleration(1, secondsSinceLastUpdate);
+    	this.updateAcceleration(secondsSinceLastUpdate);
     	//friction
     	for(var i in this.sceneObjects){
 	    	if (this.sceneObjects[i].acceleration[0] == 0 && Math.abs(this.sceneObjects[i].velocity[0]) > 0 && this.onTopOfSurface(this.sceneObjects[i])){
@@ -54,78 +53,84 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
 				this.sceneObjects[i].velocity[0]+=frictionEffect;
 			}
     	}
-    	this.updateMovement(0, secondsSinceLastUpdate);
-    	this.updateMovement(1, secondsSinceLastUpdate);
+    	this.updateMovement(secondsSinceLastUpdate);
     	this.draw();
     	
     	this.lastUpdate = new Date().getTime();
     };
     
-    this.updateAcceleration = function (xyIndex, secondsSinceLastUpdate){
+    this.updateAcceleration = function (secondsSinceLastUpdate){
     	for(var i in this.sceneObjects){
     		if(this.sceneObjects[i].acceleration){
-    			if(this.sceneObjects[i].acceleration[xyIndex] != 0){
-	    			this.sceneObjects[i].velocity[xyIndex]+=this.sceneObjects[i].acceleration[xyIndex]*secondsSinceLastUpdate;
+    			if(this.sceneObjects[i].acceleration[0] != 0){
+	    			this.sceneObjects[i].velocity[0]+=this.sceneObjects[i].acceleration[0]*secondsSinceLastUpdate;
+    			}
+    			if(this.sceneObjects[i].acceleration[1] != 0){
+	    			this.sceneObjects[i].velocity[1]+=this.sceneObjects[i].acceleration[1]*secondsSinceLastUpdate;
     			}
     			//gravity
-    			if(xyIndex == 1){
-    				if(!this.sceneObjects[i].noGravity){
-    		    		this.sceneObjects[i].velocity[xyIndex]+=this.gravity*secondsSinceLastUpdate;
-    		    		if(this.sceneObjects[i].velocity[xyIndex] > this.terminalVelocity){
-    		    			this.sceneObjects[i].velocity[xyIndex] = this.terminalVelocity;
-    		    		}
-    	    		}
-    			}
+				if(!this.sceneObjects[i].noGravity){
+		    		this.sceneObjects[i].velocity[1]+=this.gravity*secondsSinceLastUpdate;
+		    		if(this.sceneObjects[i].velocity[1] > this.terminalVelocity){
+		    			this.sceneObjects[i].velocity[1] = this.terminalVelocity;
+		    		}
+	    		}
     		}
     	}
     };
     
-    this.updateMovement = function (xyIndex, secondsSinceLastUpdate){
-    	for(var i in this.sceneObjects){
-	    	if(this.sceneObjects[i].velocity[xyIndex] != 0){
-	    		var direction = this.sceneObjects[i].velocity[xyIndex] > 0? 1 : -1;
-	    		var travelDistanceThisUpdate = Math.abs(this.sceneObjects[i].velocity[xyIndex]*secondsSinceLastUpdate);
-	    		for(;travelDistanceThisUpdate > 0;travelDistanceThisUpdate--){
-	    			var movementOffset = [0,0];
-	    			movementOffset[xyIndex] = direction * Math.min(travelDistanceThisUpdate, 1);
+    this.updateMovement = function (secondsSinceLastUpdate){
+    	for(var i in this.sceneObjects){	    		
+    		var xDirection = this.sceneObjects[i].velocity[0] > 0? 1 : -1;
+    		var xTravelDistanceThisUpdate = Math.abs(this.sceneObjects[i].velocity[0]*secondsSinceLastUpdate);
+    		var yDirection = this.sceneObjects[i].velocity[1] > 0? 1 : -1;
+    		var yTravelDistanceThisUpdate = Math.abs(this.sceneObjects[i].velocity[1]*secondsSinceLastUpdate);
+    		if(this.sceneObjects[i].velocity[0] != 0){	    		
+	    		for(;xTravelDistanceThisUpdate > 0;xTravelDistanceThisUpdate--){
+	    			var movementOffset = [xDirection * Math.min(xTravelDistanceThisUpdate, 1),0];
 	    			var collisionSegments = this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment);
 	    			this.collisionSegmentsDebug = this.collisionSegmentsDebug.concat(collisionSegments);
 	    			if(collisionSegments.length){
-//	    				var maxCollisionSlope = 0;
-//	    				for(var j in collisionSegments){
-//	    					var slope = this.slope(collisionSegments[j]);
-//	    					if(xyIndex == 1){
-//	    						if(slope == 0){
-//	    							slope = Number.MAX_VALUE;
-//	    						} else {
-//	    							slope = 1/slope;
-//	    						}
-//	    					}
-//	    					maxCollisionSlope = Math.max(maxCollisionSlope, Math.abs(slope));
-//	    				}
-//	    				if(maxCollisionSlope <= this.steadyGroundSlope && xyIndex == 0 && maxCollisionSlope != 0){
-//	    					var newY = -Math.sqrt(1/(1+Math.pow(1/maxCollisionSlope,2)));
-//	    					var newX = newY/maxCollisionSlope;
-//	    					
-//	    					if(direction == 1){
-//	    						newX = -newX;
-//	    					}
-//	    					
-//	    					movementOffset = [newX,newY];
-//	    					if(!this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment).length){
-//	    						this.sceneObjects[i].coords[xyIndex]+=Math.min(travelDistanceThisUpdate, movementOffset[xyIndex]);
-//	    						this.sceneObjects[i].coords[xyIndex^1]+=Math.min(travelDistanceThisUpdate, movementOffset[xyIndex^1]);
-//	    					} else {
-//	    						this.sceneObjects[i].velocity[xyIndex] = 0;
-//			    				break;
-//	    					}
-//	    				} else {
-//		    				this.sceneObjects[i].velocity[xyIndex] = 0;
-//		    				break;
-//	    				}
+	    				var maxCollisionSlope = 0;
+	    				for(var j in collisionSegments){
+	    					var slope = this.slope(collisionSegments[j]);
+	    					maxCollisionSlope = Math.max(maxCollisionSlope, Math.abs(slope));
+	    				}
+	    				if(maxCollisionSlope <= this.steadyGroundSlope && maxCollisionSlope != 0){
+	    					var newY = -Math.sqrt(1/(1+Math.pow(1/maxCollisionSlope,2)));
+	    					var newX = newY/maxCollisionSlope;
+	    					
+	    					if(xDirection == 1){
+	    						newX = -newX;
+	    					}
+	    					
+	    					movementOffset = [newX,newY];
+	    					if(!this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment).length){
+	    						this.sceneObjects[i].coords[0]+=Math.min(xTravelDistanceThisUpdate, movementOffset[0]);
+	    						this.sceneObjects[i].coords[1]+=Math.min(yTravelDistanceThisUpdate, movementOffset[1]);
+	    					} else {
+	    						this.sceneObjects[i].velocity[0] = 0;
+			    				break;
+	    					}
+	    				} else {
+		    				this.sceneObjects[i].velocity[0] = 0;
+		    				break;
+	    				}
 	    			} else {
-	    				this.sceneObjects[i].coords[xyIndex]+=direction * Math.min(travelDistanceThisUpdate, 1);
+	    				this.sceneObjects[i].coords[0]+=xDirection * Math.min(xTravelDistanceThisUpdate, 1);
 	    			}
+	    		}
+			}
+    		if(this.sceneObjects[i].velocity[1] != 0){	    		
+	    		for(;yTravelDistanceThisUpdate > 0;yTravelDistanceThisUpdate--){
+	    			var movementOffset = [0,yDirection * Math.min(yTravelDistanceThisUpdate, 1)];
+	    			var collisionSegments = this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment);
+	    			this.collisionSegmentsDebug = this.collisionSegmentsDebug.concat(collisionSegments);
+	    			if(collisionSegments.length){
+	    				this.sceneObjects[i].velocity[1] = 0;
+	    				break;
+	    			}
+	    			this.sceneObjects[i].coords[1]+=yDirection * Math.min(yTravelDistanceThisUpdate, 1);
 	    		}
 			}
     	}
