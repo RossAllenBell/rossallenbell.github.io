@@ -98,27 +98,21 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
 	    				}
 	    				if(maxCollisionSlope <= this.steadyGroundSlope && maxCollisionSlope != 0){
 	    					var newY = -Math.sqrt(1/(1+Math.pow(1/maxCollisionSlope,2)));
-	    					var newX = newY/maxCollisionSlope;
-	    					
-	    					if(xDirection == 1){
-	    						newX = -newX;
-	    					}
-	    					
+	    					var newX = newY/maxCollisionSlope * xDirection * -1;//-1 for negative Y	    					
 	    					movementOffset = [newX,newY];
 	    					if(!this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment).length){
 	    						this.sceneObjects[i].coords[0]+=Math.min(xTravelDistanceThisUpdate, movementOffset[0]);
-	    						this.sceneObjects[i].coords[1]+=Math.min(yTravelDistanceThisUpdate, movementOffset[1]);
-	    					} else {
-	    						this.sceneObjects[i].velocity[0] = 0;
-			    				break;
+//	    						this.sceneObjects[i].coords[0]+=(xTravelDistanceThisUpdate < Math.abs(movementOffset[0])? xTravelDistanceThisUpdate : movementOffset[0]);
+	    						this.sceneObjects[i].coords[1]+=movementOffset[1];
+	    						continue;
 	    					}
-	    				} else {
-		    				this.sceneObjects[i].velocity[0] = 0;
+    						this.sceneObjects[i].velocity[0] = 0;
 		    				break;
 	    				}
-	    			} else {
-	    				this.sceneObjects[i].coords[0]+=xDirection * Math.min(xTravelDistanceThisUpdate, 1);
+	    				this.sceneObjects[i].velocity[0] = 0;
+	    				break;
 	    			}
+	    			this.sceneObjects[i].coords[0]+=xDirection * Math.min(xTravelDistanceThisUpdate, 1);
 	    		}
 			}
     		if(this.sceneObjects[i].velocity[1] != 0){	    		
@@ -127,6 +121,28 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
 	    			var collisionSegments = this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment);
 	    			this.collisionSegmentsDebug = this.collisionSegmentsDebug.concat(collisionSegments);
 	    			if(collisionSegments.length){
+	    				var minCollisionSlope = Number.MAX_VALUE;
+	    				for(var j in collisionSegments){
+	    					var slope = this.slope(collisionSegments[j]);
+	    					if(Math.abs(slope) < minCollisionSlope){
+	    						minCollisionSlope = slope;
+	    					}
+	    				}
+	    				if(Math.abs(minCollisionSlope) >= this.steadyGroundSlope && minCollisionSlope != Number.MAX_VALUE){
+	    					var newX = Math.sqrt(1/(1+Math.pow(minCollisionSlope,2)));
+	    					if(minCollisionSlope > 0){
+	    						newX = -newX;
+	    					}
+	    					var newY = Math.abs(minCollisionSlope * newX);	    					
+	    					movementOffset = [newX,newY];
+	    					if(!this.collision(this.offsetSegments(this.offsetSegments(this.sceneObjects[i].segments, this.sceneObjects[i].coords), movementOffset), this.environment).length){
+	    						this.sceneObjects[i].coords[0]+=Math.min(xTravelDistanceThisUpdate, movementOffset[0]);
+	    						this.sceneObjects[i].coords[1]+=Math.min(yTravelDistanceThisUpdate, movementOffset[1]);
+	    						continue;
+	    					}
+    						this.sceneObjects[i].velocity[1] = 0;
+		    				break;
+	    				}
 	    				this.sceneObjects[i].velocity[1] = 0;
 	    				break;
 	    			}
@@ -343,7 +359,7 @@ function Tangible(div, width, height, sceneWidth, sceneHeight) {
     	if(segment[1][0] - segment[0][0] == 0){
     		return Number.MAX_VALUE;
     	}
-    	return (segment[1][1] - segment[0][1])/(segment[1][0] - segment[0][0]);
+    	return ((-segment[1][1]) - (-segment[0][1]))/(segment[1][0] - segment[0][0]);
     };
     
     this.intersection = function(segmentA, segmentB){
