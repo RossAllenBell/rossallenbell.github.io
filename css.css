@@ -25,7 +25,7 @@ img {
 
 .project-image-inline {
     float: right;
-    margin-bottom: 1cm;
+    margin-bottom: 2cm;
 }
 
 .project-image-row {
@@ -39,5 +39,5 @@ img {
 
 .project-section {
     clear: both;
-    margin-bottom: 1cm;
+    margin-bottom: 2cm;
 }
