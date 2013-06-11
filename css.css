@@ -1,24 +1,31 @@
 body {
-    margin: auto;
+    /*margin: auto;*/
     width: 800px;
+    background-color: #E7E7E7;
+    margin-left: 1cm;
+    margin-top: 1cm;
 }
 
 img {
-    border-style:none;
+    border-style: none;
+}
+
+.b {
+    font-weight: bold;
 }
 
 .middleficated {
-    text-align:center;
-    font-weight:bold;
+    text-align: center;
+    font-weight: bold;
 }
 
 .project-title {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .project-image-inline {
     float: right;
-    padding-bottom:20px;
+    margin-bottom: 1cm;
 }
 
 .project-image-row {
@@ -32,4 +39,5 @@ img {
 
 .project-section {
     clear: both;
+    margin-bottom: 1cm;
 }
