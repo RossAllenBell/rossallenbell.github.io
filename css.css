@@ -26,6 +26,7 @@ img {
 .project-image-inline {
     float: right;
     margin-bottom: 2cm;
+    margin-left: 10px;
 }
 
 .project-image-row {
