@@ -1,43 +1,15 @@
-body {
-    /*margin: auto;*/
-    width: 800px;
-    margin-left: 1cm;
-    margin-top: 1cm;
-}
-
 img {
-    border-style: none;
+    box-shadow: 0 0 20px black;
 }
 
-.b {
-    font-weight: bold;
+body {
+    padding-bottom: 20px;
 }
 
-.middleficated {
-    text-align: center;
-    font-weight: bold;
+.header-cont {
+    width:100%;
+    position:fixed;
+    top:0px;
 }
 
-.project-title {
-    font-weight: bold;
-}
-
-.project-image-inline {
-    float: right;
-    margin-bottom: 2cm;
-    margin-left: 10px;
-}
-
-.project-image-row {
-    text-align: center;
-    padding-left: 0px;
-}
-
-.project-image-row li {
-    display: inline-block;
-}
-
-.project-section {
-    clear: both;
-    margin-bottom: 2cm;
-}
+.top-buffer { margin-top:20px; }
