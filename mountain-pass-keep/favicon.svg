@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Mountain Pass Keep emblem: a crenellated keep nestled in a mountain pass, in the game palette. -->
+  <rect width="64" height="64" rx="13" fill="#14161d"/>
+  <!-- mountain range with a central pass (dip) -->
+  <path d="M2 60 L17 22 L27 44 L37 44 L47 22 L62 60 Z" fill="#2a2620" stroke="#4a4030" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M17 22 L21 32 M47 22 L43 32" fill="none" stroke="#4a4030" stroke-width="1.4"/>
+  <!-- the keep tower in the pass -->
+  <g stroke="#0c0d11" stroke-width="2" stroke-linejoin="round">
+    <rect x="25.5" y="28" width="13" height="24" fill="#6b7185"/>
+    <rect x="25.5" y="25" width="3.4" height="4.5" fill="#6b7185"/>
+    <rect x="30.3" y="25" width="3.4" height="4.5" fill="#6b7185"/>
+    <rect x="35.1" y="25" width="3.4" height="4.5" fill="#6b7185"/>
+    <path d="M28.5 52 v-8 a3.5 3.5 0 0 1 7 0 v8 Z" fill="#1d2333"/>
+  </g>
+  <!-- top-left highlight + stone course -->
+  <path d="M26.5 28.5 L26.5 51 M26 36 L38 36" fill="none" stroke="#8a93a6" stroke-width="1.1" opacity="0.7"/>
+  <!-- banner -->
+  <line x1="32" y1="28" x2="32" y2="17" stroke="#5d6b7e" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M32 18 l8 2.4 l-8 2.4 Z" fill="#c8a24a" stroke="#0c0d11" stroke-width="1"/>
+</svg>

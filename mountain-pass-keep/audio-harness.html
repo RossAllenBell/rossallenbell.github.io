@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/mountain-pass-keep/favicon.svg" />
+    <title>Audio Harness — Mountain Pass Keep</title>
+    <style>
+      :root { color-scheme: dark; }
+      body { margin: 0; background: #14161d; color: #c2c8d4; font: 13px/1.5 system-ui, sans-serif; }
+      header { padding: 18px 24px; border-bottom: 1px solid #242833; }
+      header h1 { margin: 0 0 4px; font-size: 16px; color: #fff; }
+      header p { margin: 0; color: #8a93a4; max-width: 70ch; }
+      .wrap { padding: 18px 24px; }
+      table { border-collapse: collapse; width: 100%; max-width: 1100px; }
+      th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid #20242e; font-variant-numeric: tabular-nums; }
+      th { color: #8a93a4; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+      td.name { color: #e6eaf2; }
+      .pass { color: #6fae6a; } .fail { color: #d6493f; font-weight: 700; }
+      button { background: #232838; color: #cdd6e2; border: 1px solid #343b4f; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+      button:hover { background: #2c3346; }
+      .muted { color: #6f7889; }
+      h2 { font-size: 13px; color: #cdd6e2; margin: 22px 0 8px; }
+    </style>
+    <script type="module" crossorigin src="/mountain-pass-keep/assets/audio-BZFO8DbI.js"></script>
+    <link rel="modulepreload" crossorigin href="/mountain-pass-keep/assets/modulepreload-polyfill-Dezn_h7o.js">
+    <link rel="modulepreload" crossorigin href="/mountain-pass-keep/assets/music-B8ttmYN7.js">
+  </head>
+  <body>
+    <header>
+      <h1>Audio Harness — Mountain Pass Keep</h1>
+      <p>Renders every cue + each music phase OFFLINE and runs the deterministic acoustic gates (research/11 §4): clipping/true-peak, silence (dead synth), DC offset, duration, brightness band. Gates catch <em>broken</em>, never <em>good</em> — click ▶ to audition and judge by ear. Verdict line at the bottom.</p>
+    </header>
+    <div class="wrap" id="app">building…</div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/mountain-pass-keep/favicon.svg" />
+    <title>Sprite Gallery — Mountain Pass Keep</title>
+    <style>
+      :root { color-scheme: dark; }
+      body { margin: 0; background: #14161d; color: #c2c8d4; font: 13px/1.4 system-ui, sans-serif; }
+      header { padding: 18px 24px; border-bottom: 1px solid #242833; position: sticky; top: 0; background: #14161dee; backdrop-filter: blur(4px); }
+      header h1 { margin: 0 0 4px; font-size: 16px; color: #fff; }
+      header p { margin: 0; color: #8a93a4; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 14px; padding: 18px 24px; }
+      .card { background: #181b24; border: 1px solid #242833; border-radius: 10px; padding: 12px 14px; }
+      .card h2 { margin: 0 0 2px; font-size: 13px; color: #e6eaf2; letter-spacing: .04em; }
+      .card .meta { color: #7e879a; font-size: 11px; margin-bottom: 10px; }
+      .row { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+      .row .label { width: 100%; color: #6f7889; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 2px; }
+      .inst { position: relative; display: inline-block; }
+      .inst img { position: absolute; inset: 0; image-rendering: auto; }
+      .inst .ph { display: block; }
+      .controls { padding: 6px 24px 0; color: #8a93a4; }
+      .controls label { margin-right: 16px; }
+    </style>
+    <script type="module" crossorigin src="/mountain-pass-keep/assets/gallery-DTF70jWs.js"></script>
+    <link rel="modulepreload" crossorigin href="/mountain-pass-keep/assets/modulepreload-polyfill-Dezn_h7o.js">
+    <link rel="modulepreload" crossorigin href="/mountain-pass-keep/assets/archer-DAKLYBk8.js">
+  </head>
+  <body>
+    <header>
+      <h1>Sprite Gallery — Mountain Pass Keep</h1>
+      <p>Every generator, live-animated, on the in-game field colour. Each card: hero (96px) · variation row · animation frames. Reflects exactly what ships (same generators as the runtime).</p>
+    </header>
+    <div class="controls">
+      <label><input type="checkbox" id="animate" checked /> animate</label>
+      <label><input type="checkbox" id="shadows" checked /> shadows</label>
+    </div>
+    <div class="grid" id="grid"></div>
+  </body>
+</html>
