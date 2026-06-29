@@ -1,0 +1,37 @@
+<!doctype html>
+<!--
+  DAWN FLIGHT — sprite + backdrop review gallery (docs/08 §5). The owner's taste oracle: an animated
+  contact sheet of every sprite (sizes · seeded variation · animation frames · a density cluster) on the
+  game's dark field, plus a live preview of all five band backdrops. Imports the SAME shipping modules
+  the renderer rasterizes, so what's reviewed is what ships. Open via the dev server: /gallery.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dawn Flight — sprite gallery</title>
+    <style>
+      body { margin: 0; background: #0c0d11; color: #e6e9f2; font-family: ui-monospace, monospace; padding: 22px; }
+      h1 { font-size: 18px; } h2 { font-size: 14px; color: #9fb0d0; margin: 26px 0 8px; }
+      p { color: #9aa3b4; font-size: 12px; }
+      .sprite { border-top: 1px solid #1c1f2a; padding: 10px 0; }
+      .name { font-size: 13px; color: #cfe0ff; margin-bottom: 6px; }
+      .row { display: flex; align-items: flex-end; gap: 14px; padding: 4px 0; }
+      .lbl { width: 130px; color: #6b7488; font-size: 11px; }
+      .cell { background: #1a1635; border-radius: 6px; image-rendering: auto; }
+      .backs { display: flex; gap: 12px; flex-wrap: wrap; }
+      .back { text-align: center; font-size: 11px; color: #9fb0d0; }
+      canvas.bk { border-radius: 8px; border: 1px solid #1c1f2a; width: 220px; height: 220px; }
+    </style>
+    <script type="module" crossorigin src="/dawn-flight/assets/gallery-PFKyxntU.js"></script>
+    <link rel="modulepreload" crossorigin href="/dawn-flight/assets/sprites-CvkdHd-R.js">
+    <link rel="modulepreload" crossorigin href="/dawn-flight/assets/modulepreload-polyfill-Dezn_h7o.js">
+  </head>
+  <body>
+    <h1>Dawn Flight — sprite &amp; backdrop gallery</h1>
+    <p>Clean-vector roster on the dark field · sizes 32/56/96 · seeded variation · animation frames · density cluster. Then the five band backdrops, live.</p>
+    <div id="sheet"></div>
+    <h2>Band backdrops (the ascent — subtle, low-noise; parallax space saved for Skybreak)</h2>
+    <div class="backs" id="backs"></div>
+
+  </body>
+</html>

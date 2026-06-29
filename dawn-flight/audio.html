@@ -1,0 +1,49 @@
+<!doctype html>
+<!--
+  DAWN FLIGHT — audio review + gate page (docs/08 §5). Renders every SFX cue and each music tier OFFLINE
+  (OfflineAudioContext), runs the deterministic acoustic gates (catch BROKEN audio, not "good"), shows a
+  pass/fail table, and gives a ▶ to audition each by ear — plus live music with tier-switch buttons so
+  you can hear the menu → stage → boss swell. Imports the SAME engine the game ships. Open: /audio.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title id="title">Dawn Flight — audio harness</title>
+    <style>
+      body { margin: 0; background: #0c0d11; color: #e6e9f2; font-family: ui-monospace, monospace; padding: 22px; }
+      h1 { font-size: 18px; } h2 { font-size: 14px; color: #9fb0d0; margin: 24px 0 8px; }
+      p { color: #9aa3b4; font-size: 12px; }
+      table { border-collapse: collapse; margin-top: 10px; }
+      td, th { border: 1px solid #232838; padding: 5px 10px; font-size: 12px; text-align: left; }
+      .pass { color: #6cd98a; } .fail { color: #ff6a5a; }
+      button { font: inherit; background: #1c2030; color: #e6e9f2; border: 1px solid #3a4150; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+      .tiers button { padding: 8px 16px; margin-right: 8px; }
+    </style>
+    <script type="module" crossorigin src="/dawn-flight/assets/audio-BZ7gsuqX.js"></script>
+    <link rel="modulepreload" crossorigin href="/dawn-flight/assets/modulepreload-polyfill-Dezn_h7o.js">
+    <link rel="modulepreload" crossorigin href="/dawn-flight/assets/engine-BetAcVFC.js">
+  </head>
+  <body>
+    <h1>Dawn Flight — audio harness</h1>
+    <p>Gates prove "not broken" (not silent · not clipping · in-band duration · low DC). The owner's EAR judges the vibe.</p>
+
+    <h2>Live music — the three energy tiers (A Lydian, steady tempo, additive layers)</h2>
+    <p>Click a tier to hear the loop swell layers in/out (bar-quantized). Menu = pad+arp · Stage = +bass · Boss = +hook+drums.</p>
+    <div class="tiers">
+      <button id="t-menu">▶ menu</button>
+      <button id="t-stage">▶ stage</button>
+      <button id="t-boss">▶ boss</button>
+      <button id="t-stop">■ stop</button>
+    </div>
+
+    <h2>SFX cues</h2>
+    <table id="sfx"><thead><tr><th>cue</th><th>peak</th><th>rms</th><th>DC</th><th>not-silent</th><th>not-clipping</th><th>verdict</th><th>▶</th></tr></thead><tbody></tbody></table>
+
+    <h2>Music tiers — offline render gate</h2>
+    <table id="music"><thead><tr><th>tier</th><th>peak</th><th>rms</th><th>not-silent</th><th>not-clipping</th><th>verdict</th></tr></thead><tbody></tbody></table>
+
+    <h2>Judge self-test (planted-bad must FAIL)</h2>
+    <table id="self"><thead><tr><th>case</th><th>caught?</th></tr></thead><tbody></tbody></table>
+
+  </body>
+</html>
