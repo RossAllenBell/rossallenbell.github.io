@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="13" fill="#161821" />
+  <!-- Two crossed blades in the faction colours (blue ally vs red foe) = "strife". Each blade carries the
+       game's single dark ink outline; a bright tip glints like the unit sprites. -->
+  <g stroke-linecap="round">
+    <line x1="15" y1="49" x2="47" y2="17" stroke="#0c0d11" stroke-width="10" />
+    <line x1="17" y1="17" x2="49" y2="49" stroke="#0c0d11" stroke-width="10" />
+    <line x1="15" y1="49" x2="47" y2="17" stroke="#4a7fd6" stroke-width="6" />
+    <line x1="17" y1="17" x2="49" y2="49" stroke="#c0463c" stroke-width="6" />
+    <circle cx="47" cy="17" r="3.4" fill="#bcd3f2" stroke="#0c0d11" stroke-width="1.2" />
+    <circle cx="49" cy="49" r="3.4" fill="#ec8a80" stroke="#0c0d11" stroke-width="1.2" />
+    <circle cx="15" cy="49" r="2.6" fill="#8a6a44" stroke="#0c0d11" stroke-width="1.2" />
+    <circle cx="17" cy="17" r="2.6" fill="#8a6a44" stroke="#0c0d11" stroke-width="1.2" />
+  </g>
+</svg>
