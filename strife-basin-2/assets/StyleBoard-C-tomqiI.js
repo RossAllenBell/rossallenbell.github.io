@@ -1,4 +1,4 @@
-import{t as e}from"./index-C-YSKOlV.js";var t=`:root{--bg:#14161d;--lane:#191b24;--ink:#0c0d11;--tx:#d6dae3;--dim:#8b93a3;}
+import{t as e}from"./index-BszdZ7Xj.js";var t=`:root{--bg:#14161d;--lane:#191b24;--ink:#0c0d11;--tx:#d6dae3;--dim:#8b93a3;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;padding:28px 34px 60px}
   h1{font-size:24px;margin:0 0 2px;letter-spacing:.3px}
