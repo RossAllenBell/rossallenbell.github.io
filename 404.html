@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found · rossallenbell.com</title>
+    <!--
+      GitHub Pages serves this single root 404.html for any path with no matching file. The browser-game
+      projects here are single-page apps with client-side routes (e.g. /strife-basin-2/audio, /style) that
+      have no file on disk. For those, redirect to the app's HASH route (/<game>/#<route>) — the game's
+      index.html IS a real file, and the app reads the hash to render the route. Everything else gets a
+      plain not-found message.
+    -->
+    <script>
+      (function () {
+        var m = location.pathname.match(/^\/(strife-basin-2|mountain-pass-keep|dawn-flight)\/(.+?)\/?$/);
+        if (m) {
+          // e.g. /strife-basin-2/audio -> /strife-basin-2/#audio  (the game's real index.html + a hash route)
+          location.replace('/' + m[1] + '/#' + m[2] + location.search);
+        }
+      })();
+    </script>
+    <style>
+      body { background: #f1f1f1; color: #333; font: 16px/1.5 system-ui, sans-serif; margin: 0; padding: 15% 24px; text-align: center; }
+      a { color: #4078c0; }
+    </style>
+  </head>
+  <body>
+    <h1>404</h1>
+    <p>That page doesn't exist.</p>
+    <p><a href="/">Back to rossallenbell.com</a></p>
+  </body>
+</html>
